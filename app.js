@@ -20,6 +20,9 @@ app.use(express.json());
 app.use(bodyParser.json({ limit: "3mb" }));
 
 // Routes
+app.get("/", (req,res )=>{
+  res.send("Home page")
+})
 app.use("/auth", authRoutes);
 
 app.use("/user", userRoutes);
@@ -27,6 +30,7 @@ app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
 
 app.use("/order", orderRoutes);
+
 
 app.listen(8080, () => {
   console.log(`Server is running on 8080`);
