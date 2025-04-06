@@ -10,7 +10,11 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://crud-app-two-woad.vercel.app/", "http://localhost:8080"],
+  })
+);
 
 // connect database
 ConnectDB();
@@ -20,9 +24,9 @@ app.use(express.json());
 app.use(bodyParser.json({ limit: "3mb" }));
 
 // Routes
-app.get("/", (req,res )=>{
-  res.send("Home page")
-})
+app.get("/", (req, res) => {
+  res.send("Home page");
+});
 app.use("/auth", authRoutes);
 
 app.use("/user", userRoutes);
@@ -30,7 +34,6 @@ app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
 
 app.use("/order", orderRoutes);
-
 
 app.listen(8080, () => {
   console.log(`Server is running on 8080`);
